@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\testingEvent;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('test', function(){
+    event(new testingEvent());
+
+    return 'done';
+});
 require __DIR__.'/auth.php';
