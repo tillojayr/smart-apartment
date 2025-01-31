@@ -173,4 +173,11 @@
             </div>
         </div>
     </body>
+    <script>
+        setTimeout(() => {
+            window.Echo.channel('ApartmentChannel').listen('SwitchControlEvent', (e) => {
+                console.log(e);
+            })
+        })
+    </script>
 </html>
