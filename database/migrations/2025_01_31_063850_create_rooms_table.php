@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('owner_id');
             $table->string('room_number')->nullable();
-            $table->string('tenant');
-            $table->timestamp('joined_at');
-            $table->string('password');
+            $table->string('tenant')->nullable();
+            $table->timestamp('joined_at')->nullable();
+            $table->string('password')->nullable();
             $table->integer('bill')->nullable();
             $table->integer('volts')->nullable();
             $table->decimal('current', 8, 2)->nullable();
             $table->decimal('consumed', 10, 2)->nullable();
-            $table->string('token');
+            $table->string('token')->nullable();
             $table->timestamps();
         });
     }

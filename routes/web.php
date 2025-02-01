@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('test', function(){
-    event(new SwitchControlEvent());
+    event(new SwitchControlEvent('asd'));
 
     return 'done';
 });
