@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\SwitchControlEvent;
+use App\Listeners\ESP32MessageListener;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,4 +23,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    protected $listen = [
+        SwitchControlEvent::class => [
+            ESP32MessageListener::class,
+        ],
+    ];
 }

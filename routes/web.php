@@ -18,10 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('test', function(){
+Route::get('test', function () {
     event(new SwitchControlEvent('asd'));
 
     return 'done';
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
