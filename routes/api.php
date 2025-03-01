@@ -21,3 +21,5 @@ Route::prefix('v1/user')->group(function () {
     Route::get('/owner', [UserController::class, 'owner']);
     Route::get('/tenant', [UserController::class, 'tenant']);
 });
+
+Route::post('/test', [DataController::class, 'test']);

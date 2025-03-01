@@ -16,11 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    {{-- <x-nav-link :href="route('menu1')" :active="request()->routeIs('menu1')">
-                        {{ __('Menu1') }}
+                    <x-nav-link :href="route('tenants')" :active="request()->routeIs('tenants')">
+                        {{ __('Tenants') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('menu2')" :active="request()->routeIs('menu2')">
+                    {{-- <x-nav-link :href="route('menu2')" :active="request()->routeIs('menu2')">
                         {{ __('Menu2') }}
                     </x-nav-link>
 
@@ -91,7 +91,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            {{-- <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Test') }}
             </x-responsive-nav-link>
 
@@ -101,7 +101,7 @@
 
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            </x-responsive-nav-link> --}}
         </div>
 
         <!-- Responsive Settings Options -->

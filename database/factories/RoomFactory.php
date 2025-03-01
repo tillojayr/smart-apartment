@@ -19,7 +19,7 @@ class RoomFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'owner_id' => User::factory()->create(),
+            'owner_id' => User::factory()->create(),
             'room_number' => fake()->numberBetween(1, 10),
             'tenant' => fake()->words(2, true),
             'joined_at' => now(),
