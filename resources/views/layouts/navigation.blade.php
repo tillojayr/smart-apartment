@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('tenants')" :active="request()->routeIs('tenants')">
+                    <x-nav-link :href="route('tenants')" :active="request()->routeIs('tenants')" wire:navigate>
                         {{ __('Tenants') }}
                     </x-nav-link>
 

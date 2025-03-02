@@ -12,8 +12,8 @@
                     <div class="col d-flex justify-content-center">
                         <div class="card shadow" style="width: 18rem;">
                             <div class="text-center">
-                                <img class="card-img-top img-fluid w-100" src="https://placehold.co/600x400"
-                                    alt="Card image cap">
+                                {{-- <img class="card-img-top img-fluid w-100" src="https://placehold.co/600x400" --}}
+                                alt="Card image cap">
                             </div>
                             <div class="card-body">
                                 <h3 class="h5">Feedback Report</h3>
@@ -26,8 +26,8 @@
                     <div class="col d-flex justify-content-center">
                         <div class="card shadow" style="width: 18rem;">
                             <div class="text-center">
-                                <img class="card-img-top img-fluid w-100" src="https://placehold.co/600x400"
-                                    alt="Card image cap">
+                                {{-- <img class="card-img-top img-fluid w-100" src="https://picsum.photos/200/300" --}}
+                                alt="Card image cap">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">QR Payment</h5>
@@ -40,8 +40,8 @@
                     <div class="col d-flex justify-content-center">
                         <div class="card shadow" style="width: 18rem;">
                             <div class="text-center">
-                                <img class="card-img-top img-fluid w-100" src="https://placehold.co/600x400"
-                                    alt="Card image cap">
+                                {{-- <img class="card-img-top img-fluid w-100" src="https://placehold.co/600x400" --}}
+                                alt="Card image cap">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">User Management</h5>

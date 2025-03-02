@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12 mt-5">
-
+    <div class="container mt-4">
+        <livewire:tenants />
     </div>
 </x-app-layout>

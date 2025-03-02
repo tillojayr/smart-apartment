@@ -14,10 +14,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/tenants', function () {
-        return view('tenants');
-    })->name('tenants');
+    // Route::get('/tenants', )->name('tenants');
 });
+Route::view('tenants', 'tenants')->name('tenants');
 
 Route::get('test', function () {
     event(new SwitchControlEvent('asd'));
