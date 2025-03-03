@@ -14,7 +14,6 @@ class SwitchController extends Controller
 {
     public function index(Request $request)
     {
-        Log::info('Received data from ESP32: ');
         $message = [
             "apartmentId" => $request->apartmentId,
             "relay" => $request->room_id . $request->relay,

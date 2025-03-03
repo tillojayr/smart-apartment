@@ -17,6 +17,43 @@ services:
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
+    command: >
+      sh -c "php artisan queue:work &
+             php-fpm"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+
+  reverb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-reverb
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan reverb:start
+    volumes:
+      - .:/var/www
+    ports:
+      - "8080:8080" # Expose WebSocket port
+    networks:
+      - app-network
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-queue
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan queue:work
+    volumes:
+      - .:/var/www
+    networks:
+      - app-network
+
   webserver:
     image: nginx:alpine
     restart: unless-stopped

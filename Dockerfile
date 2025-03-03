@@ -30,7 +30,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install -j$(nproc) gd
 
 # PHP拡張モジュールのインストール
-RUN docker-php-ext-install -j$(nproc) bcmath pdo pdo_mysql mbstring intl xml zip
+RUN docker-php-ext-install -j$(nproc) bcmath pdo pdo_mysql mbstring intl xml zip pcntl
 
 # Composerのインストール
 COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer

@@ -24,9 +24,9 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    protected $listen = [
-        SwitchControlEvent::class => [
-            ESP32MessageListener::class,
-        ],
-    ];
+    // protected $listen = [
+    //     SwitchControlEvent::class => [
+    //         ESP32MessageListener::class,
+    //     ],
+    // ];
 }
