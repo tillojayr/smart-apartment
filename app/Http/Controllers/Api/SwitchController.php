@@ -14,21 +14,26 @@ class SwitchController extends Controller
 {
     public function index(Request $request)
     {
-        $message = [
-            "apartmentId" => $request->apartmentId,
-            "relay" => $request->room_id . $request->relay,
-            "state" => $request->state,
-        ];
-
-        event(new SwitchControlEvent($message));
-
-        $control = Control::where(['owner_id' => $request->apartmentId, 'room_id' => $request->room_id])->first();
-
-        $relay = $request->relay == 'a' ? '1' : '2';
-        $control->fill(['relay_' . $relay => $request->state]);
-        $control->save();
-
-        return response()->json([], 200);
+        try{
+            $message = [
+                "apartmentId" => $request->apartmentId,
+                "relay" => $request->room_id . $request->relay,
+                "state" => $request->state,
+            ];
+    
+            event(new SwitchControlEvent($message));
+    
+            $control = Control::where(['owner_id' => $request->apartmentId, 'room_id' => $request->room_id])->first();
+    
+            $relay = $request->relay == 'a' ? '1' : '2';
+            $control->fill(['relay_' . $relay => $request->state]);
+            $control->save();
+    
+            return response()->json([], 200);
+        }
+        catch (\Exception $e) {
+            return response()->json(['error' => 'Something went wrong'], 500);
+        }
     }
 
     public function state(Request $request)

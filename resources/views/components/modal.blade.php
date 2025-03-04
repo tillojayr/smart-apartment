@@ -14,7 +14,7 @@ $maxWidth = [
 ][$maxWidth];
 @endphp
 
-<div
+<div 
     x-data="{
         show: @js($show),
         focusables() {
@@ -61,7 +61,7 @@ $maxWidth = [
         x-transition:leave-end="opacity-0"
     >
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-    </div>
+            </div>
 
     <div
         x-show="show"
