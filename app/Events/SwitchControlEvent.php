@@ -40,4 +40,12 @@ class SwitchControlEvent implements ShouldBroadcast
             new Channel('ApartmentChannel'),
         ];
     }
+
+    /**
+     * The event's broadcast name.
+     */
+    public function broadcastAs(): string
+    {
+        return 'SwitchControlEvent';
+    }
 }
