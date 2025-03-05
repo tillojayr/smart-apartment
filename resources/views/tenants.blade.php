@@ -4,11 +4,9 @@
             {{ __('Tenants') }}
         </h2>
     </x-slot>
-    <div class="container mx-auto px-4 py-6">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-electric-orange-200">
-            <div class="p-6">
-                <livewire:tenants />
-            </div>
-        </div>
+
+    <div>
+        <livewire:tenants />
     </div>
+
 </x-app-layout>
