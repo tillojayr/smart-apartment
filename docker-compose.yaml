@@ -59,7 +59,6 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - .:/var/www
       - ./docker/nginx/sites-enabled:/etc/nginx/sites-enabled
