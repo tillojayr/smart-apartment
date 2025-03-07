@@ -62,7 +62,7 @@ services:
       - "443:443"
     volumes:
       - .:/var/www
-      - ./docker/nginx/ssl:/etc/nginx/ssl
+      - ./docker/nginx/sites-enabled:/etc/nginx/sites-enabled
       - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - app-network
