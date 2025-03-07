@@ -58,10 +58,11 @@ services:
     image: nginx:alpine
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "443:443"
     volumes:
       - .:/var/www
-      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/sites-enabled:/etc/nginx/sites-enabled
+      - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - app-network
 
