@@ -63,6 +63,7 @@ services:
     volumes:
       - .:/var/www
       - ./docker/nginx/sites-enabled:/etc/nginx/sites-enabled
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
       - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - app-network
@@ -75,7 +76,7 @@ services:
     environment:
       MYSQL_DATABASE: laravel
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: password
+      MYSQL_PASSWORD: root
       MYSQL_USER: laravel
     volumes:
       - dbdata:/var/lib/mysql
