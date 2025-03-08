@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Room extends Model
 {
@@ -32,8 +33,8 @@ class Room extends Model
         return $this->hasMany(ElectricVariable::class);
     }
 
-    public function control(): HasMany
+    public function control(): HasOne
     {
-        return $this->hasMany(Control::class);
+        return $this->hasOne(Control::class);
     }
 }
