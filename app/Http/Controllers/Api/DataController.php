@@ -29,22 +29,41 @@ class DataController extends Controller
 
                     $bill = $consumed * $request->owner->rate;
 
-                    $data[] = [
-                        'room_id' => $roomId,
-                        'owner_id' => $request->owner->id,
-                        'bill' => $bill,
-                        'volts' => $voltage,
-                        'current' => $current,
-                    ];
+                    if($i == 0){
+                        $request->owner->bill = $bill;
+                        $request->owner->volts = $voltage;
+                        $request->owner->current = $current;
+                        $request->owner->consumed = $consumed;
+                        $request->owner->save();
 
-                    $room = Room::findOrFail($roomId);
+                        $data[] = [
+                            'room_id' => 0,
+                            'owner_id' => $request->owner->id,
+                            'bill' => $bill,
+                            'volts' => $voltage,
+                            'current' => $current,
+                        ];
+                    }
+                    else{
+                        $data[] = [
+                            'room_id' => $roomId,
+                            'owner_id' => $request->owner->id,
+                            'bill' => $bill,
+                            'volts' => $voltage,
+                            'current' => $current,
+                        ];
 
-                    $room->update([
-                        'bill' => $bill,
-                        'volts' => $voltage,
-                        'current' => $current,
-                        'consumed' => $consumed
-                    ]);
+                        $room = Room::find($roomId);
+
+                        if($room){
+                            $room->update([
+                                'bill' => $bill,
+                                'volts' => $voltage,
+                                'current' => $current,
+                                'consumed' => $consumed
+                            ]);
+                        }
+                    }
                 }
             }
 

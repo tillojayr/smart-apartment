@@ -16,6 +16,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::view('tenants', 'tenants')->name('tenants');
     Route::view('control-panel', 'control-panel')->name('control-panel');
+    Route::view('visual-data', 'visual-data')->name('visual-data');
+    Route::get('visual-data/{id}/room', function($id) {
+        return view('visual-data-room', ['roomId' => $id]);
+    })->name('visual-data.room');
 });
 
 Route::get('test', function () {
