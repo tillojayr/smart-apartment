@@ -81,10 +81,30 @@ class DataController extends Controller
         }
     }
 
-    public function test(Request $request)
+    public function reminderTime(Request $request)
     {
-        // $data = ElectricVariable::factory()->create();
+        $owner_id = $request->input('apartmentId');
+        $room_id = $request->input('room_id');
+        $reminder_time = $request->input('reminder_time');
 
-        return response()->json($request->voltage, 200);
+        try {
+            $room = Room::where(['owner_id' => $owner_id, 'id' => $room_id])->first();
+            $room->reminder_time = $reminder_time;
+            $room->save();
+
+            return response()->json('Success', 200);
+        } catch (\Exception $e) {
+            return response()->json('Something went wrong', 500);
+        }
+    }
+
+    public function getReminderTime($room_id){
+        try{
+            $room = Room::findOrFail($room_id);
+            $reminder_time = $room->reminder_time;
+            return response()->json(['reminder_time' => $reminder_time], 200);
+        } catch(\Exception $e){
+            return response()->json('Something went wrong', 500);
+        }
     }
 }

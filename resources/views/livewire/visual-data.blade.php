@@ -1,4 +1,4 @@
-<div class="py-12">
+<div class="px-sm-5">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <!-- Owner/Admin Card -->
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -30,8 +30,8 @@
                         <div class="flex-grow">
                             <h3 class="text-lg font-semibold text-electric-orange-800 mb-4">Room {{ $room->room_number }}</h3>
                             <div class="mb-4">
-                                <p class="text-gray-600"><span class="font-medium">Tenant:</span> {{ $room->tenant ?? 'Vacant' }}</p>
-                                <p class="text-gray-600"><span class="font-medium">Current Bill:</span> ₱{{ number_format($room->bill ?? 0, 2) }}</p>
+                                <p class="text-gray-600"><span class="font-medium">Tenant:</span> <span class="text-electric-orange-800">{{ $room->tenant ?? 'Vacant' }}</span></p>
+                                <p class="text-gray-600"><span class="font-medium">Current Bill:</span> <span class="text-electric-orange-800">₱{{ number_format($room->bill ?? 0, 2) }}</span></p>
                             </div>
                         </div>
                         <div class="mt-auto">

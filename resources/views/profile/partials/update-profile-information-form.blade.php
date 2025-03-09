@@ -53,6 +53,12 @@
             <x-input-error class="mt-2" :messages="$errors->get('username')" />
         </div>
 
+        <div>
+            <x-input-label for="rate" :value="__('Power Rate')" />
+            <x-text-input id="rate" name="rate" type="number" step="any" class="mt-1 block w-full" :value="old('rate', $user->rate)" required autofocus autocomplete="rate" />
+            <x-input-error class="mt-2" :messages="$errors->get('rate')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

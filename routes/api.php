@@ -15,6 +15,8 @@ Route::prefix('v1/room')->middleware([EnsureApiToken::class])->group(function ()
     Route::post('/save', [DataController::class, 'index']);
     Route::post('/switch', [SwitchController::class, 'index']);
     Route::get('/state', [SwitchController::class, 'state']);
+    Route::post('/reminder-time', [DataController::class, 'reminderTime']);
+    Route::get('/reminder-time/{id}', [DataController::class, 'getReminderTime']);
 });
 
 Route::prefix('v1/user')->group(function () {
