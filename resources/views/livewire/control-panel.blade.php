@@ -1,4 +1,4 @@
-<div>
+<div class="px-2">
     <style>
     .switch {
         position: relative;
@@ -65,7 +65,7 @@
     .card-header {
         font-weight: bold;
         font-size: 1.25rem;
-        background-color: #ff6f00;
+        background-color: #ff8b33;
         color: white;
         padding: 10px;
         border-top-left-radius: 5px;
@@ -122,7 +122,7 @@
     }
     </style>
 
-    <div class="container mt-5">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         @if (session()->has('message'))
             <div class="alert bg-electric-orange-100 border-electric-orange-400 text-electric-orange-700 alert-dismissible fade show"
                 role="alert">

@@ -1,5 +1,5 @@
 <div>
-    <div class="container mx-auto px-4 py-4">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         @if (session()->has('message'))
             <div class="alert bg-electric-orange-100 border-electric-orange-400 text-electric-orange-700 alert-dismissible fade show"
                 role="alert">

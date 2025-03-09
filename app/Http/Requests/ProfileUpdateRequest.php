@@ -29,7 +29,8 @@ class ProfileUpdateRequest extends FormRequest
                 'required',
                 'string',
                 Rule::unique(User::class)->ignore($this->user()->id),
-            ]
+            ],
+            'rate' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/', 'min:0'],
         ];
     }
 }
