@@ -29,7 +29,7 @@
                                         <p class="text-gray-600 mb-2">Users management</p>
                                         <p class="text-gray-500">View all tenant's information</p>
                                     </div>
-                                    <img src="{{ asset('tenant.svg') }}" alt="Tenants" class="w-28 h-28">
+                                    <img src="{{ asset('illustrations/tenant.svg') }}" alt="Tenants" class="w-28 h-28">
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                         <p class="text-gray-600 mb-2">Device Management</p>
                                         <p class="text-gray-500">Control your smart devices</p>
                                     </div>
-                                    <img src="{{ asset('control-panel.svg') }}" alt="Tenants" class="w-28 h-28">
+                                    <img src="{{ asset('illustrations/control-panel.svg') }}" alt="Tenants" class="w-28 h-28">
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                         <p class="text-gray-600 mb-2">Consumption Statistics</p>
                                         <p class="text-gray-500">Monitor your energy usage</p>
                                     </div>
-                                    <img src="{{ asset('visual-data.svg') }}" alt="Tenants" class="w-28 h-28">
+                                    <img src="{{ asset('illustrations/visual-data.svg') }}" alt="Tenants" class="w-28 h-28">
                                 </div>
                             </div>
                         </div>
