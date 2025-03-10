@@ -12,7 +12,7 @@
                 <div class="mb-5 m-5">
                     <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl border-t-4 border-electric-orange-500">
                         <div class="p-8">
-                            <h3 class="text-2xl font-bold text-electric-orange-600 mb-3">Welcome to Smart Apartment</h3>
+                            <h3 class="text-2xl font-bold text-electric-orange-600 mb-3">Welcome to SmartWatt</h3>
                             <p class="text-gray-600 mb-2">Hello <span class="text-electric-orange-500">{{ Auth::user()->name }},</span></p>
                             <p class="text-gray-500">Manage your smart apartment features and monitor your energy consumption all in one place.</p>
                         </div>
