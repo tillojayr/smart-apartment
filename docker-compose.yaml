@@ -33,7 +33,7 @@ services:
     container_name: laravel-reverb
     restart: unless-stopped
     working_dir: /var/www
-    command: php artisan reverb:start --host=0.0.0.0 --port=8080
+    command: php artisan reverb:start
     volumes:
       - .:/var/www
     ports:
@@ -58,7 +58,6 @@ services:
     image: nginx:alpine
     restart: unless-stopped
     ports:
-      - "443:443"
       - "80:80"
     volumes:
       - .:/var/www
