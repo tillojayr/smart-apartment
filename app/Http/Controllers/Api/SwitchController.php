@@ -21,7 +21,7 @@ class SwitchController extends Controller
                 "state" => $request->state,
             ];
 
-            // event(new SwitchControlEvent($message));
+            event(new SwitchControlEvent($message));
 
             $control = Control::where(['owner_id' => $request->apartmentId, 'room_id' => $request->room_id])->first();
 

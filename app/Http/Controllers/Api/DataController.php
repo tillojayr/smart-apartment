@@ -15,7 +15,7 @@ class DataController extends Controller
         try {
             $roomIds = explode('+', $request->roomId);
             $voltages = explode('+', $request->voltage);
-            $currents = explode('+', $request->currents);
+            $currents = explode('+', $request->current);
             $consumes = explode('+', $request->consumed);
 
             $data = [];
@@ -27,7 +27,7 @@ class DataController extends Controller
                     $current = $currents[$i];
                     $consumed = $consumes[$i];
 
-                    $bill = $consumed * $request->owner->rate;
+                    $bill = (float) $consumed * $request->owner->rate;
 
                     if($i == 0){
                         $request->owner->bill = $bill;
@@ -41,7 +41,10 @@ class DataController extends Controller
                             'owner_id' => $request->owner->id,
                             'bill' => $bill,
                             'volts' => $voltage,
-                            'current' => $current,
+                            'current' => $current ?? 0,
+                            'consumed' => $consumed,
+                            'created_at' => now(),
+                            'updated_at' => now(),
                         ];
                     }
                     else{
@@ -51,6 +54,9 @@ class DataController extends Controller
                             'bill' => $bill,
                             'volts' => $voltage,
                             'current' => $current,
+                            'consumed' => $consumed,
+                            'created_at' => now(),
+                            'updated_at' => now(),
                         ];
 
                         $room = Room::find($roomId);
@@ -77,7 +83,7 @@ class DataController extends Controller
             return response()->json('Success', 200);
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json('Something went wrong', 500);
+            return response()->json('Something wen wrong!', 500);
         }
     }
 

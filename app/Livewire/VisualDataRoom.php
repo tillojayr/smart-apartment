@@ -20,12 +20,14 @@ class VisualDataRoom extends Component
     public $chartData = [];
     public $startDate;
     public $endDate;
+    public $ownerId;
 
     public function mount($roomId)
     {
         $this->roomId = $roomId;
-        $this->startDate = Carbon::now()->subHours(24)->format('Y-m-d\TH:i');
-        $this->endDate = Carbon::now()->format('Y-m-d\TH:i');
+        $this->ownerId = auth()->id();
+        $this->startDate = Carbon::now()->subDays(1)->format('Y-m-d');
+        $this->endDate = Carbon::now()->format('Y-m-d');
         $this->loadChartData();
 
         if ($roomId == 0) {
@@ -60,8 +62,8 @@ class VisualDataRoom extends Component
 
     protected function loadChartData()
     {
-        $startDate = Carbon::parse($this->startDate);
-        $endDate = Carbon::parse($this->endDate);
+        $startDate = Carbon::parse($this->startDate)->startOfDay();
+        $endDate = Carbon::parse($this->endDate)->endOfDay();
 
         $query = ElectricVariable::query()
             ->where('owner_id', auth()->id())
@@ -97,8 +99,6 @@ class VisualDataRoom extends Component
             'voltage' => $voltageData,
             'current' => $currentData
         ];
-
-        $this->dispatch('chartDataUpdated', $this->chartData);
     }
 
     public function render()

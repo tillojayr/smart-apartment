@@ -17,14 +17,14 @@ services:
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
-    command: >
-      sh -c "php artisan queue:work &
-             php-fpm"
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 512M
+    # command: >
+    #   sh -c "php artisan queue:work &
+    #          php-fpm"
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '1'
+    #       memory: 512M
 
   reverb:
     build:
@@ -58,13 +58,13 @@ services:
     image: nginx:alpine
     restart: unless-stopped
     ports:
-      - "443:443"
+      # - "443:443"
       - "80:80"
     volumes:
       - .:/var/www
-      - ./docker/nginx/sites-enabled:/etc/nginx/sites-enabled
+      # - ./docker/nginx/sites-enabled:/etc/nginx/sites-enabled
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
-      - /etc/letsencrypt:/etc/letsencrypt
+      # - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - app-network
 

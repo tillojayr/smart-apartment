@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\DataController;
 use App\Http\Controllers\Api\SwitchController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ChartDataController;
 use App\Http\Middleware\EnsureApiToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,7 @@ Route::prefix('v1/user')->group(function () {
 });
 
 Route::post('/test', [DataController::class, 'test']);
+Route::get('/chart-data', [ChartDataController::class, 'getChartData']);
+
+Route::middleware('auth:sanctum')->group(function () {
+});

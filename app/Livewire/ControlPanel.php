@@ -35,7 +35,7 @@ class ControlPanel extends Component
                     "state" => $value ? 1 : 0,
                 ];
 
-                // event(new SwitchControlEvent($message));
+                event(new SwitchControlEvent($message));
             }
         } catch (\Exception $e) {
             session()->flash('error', 'Failed to update outlet switch');
@@ -56,7 +56,7 @@ class ControlPanel extends Component
                     "state" => $value ? 1 : 0,
                 ];
 
-                // event(new SwitchControlEvent($message));
+                event(new SwitchControlEvent($message));
             }
         } catch (\Exception $e) {
             session()->flash('error', 'Failed to update light switch');
@@ -90,7 +90,7 @@ class ControlPanel extends Component
                     "state" => 0,
                 ];
 
-                // event(new SwitchControlEvent($message));
+                event(new SwitchControlEvent($message));
 
                 $message = [
                     "apartmentId" => auth()->id(),
@@ -98,7 +98,7 @@ class ControlPanel extends Component
                     "state" => 0,
                 ];
 
-                // event(new SwitchControlEvent($message));
+                event(new SwitchControlEvent($message));
 
                 if($flag == 1){
                     session()->flash('message', 'Room ' . $room->room_number . ' deactivated successfully');

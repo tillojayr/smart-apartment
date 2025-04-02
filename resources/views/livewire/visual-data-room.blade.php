@@ -1,4 +1,4 @@
-<div class="py-1">
+<div class="py-1" x-data="{ roomId: @json($roomId), ownerId: @json($ownerId) }">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <!-- Back Button -->
         <div class="mt-2">
@@ -73,14 +73,16 @@
                     <div class="flex gap-4 items-center">
                         <div class="flex gap-2 items-center">
                             <label class="text-sm text-gray-600">From:</label>
-                            <input type="datetime-local"
-                                wire:model.live="startDate"
+                            <input type="date"
+                                id="startDate"
+                                value="{{ $startDate }}"
                                 class="rounded-md border-gray-300 shadow-sm focus:border-electric-orange-500 focus:ring-electric-orange-500">
                         </div>
                         <div class="flex gap-2 items-center">
                             <label class="text-sm text-gray-600">To:</label>
-                            <input type="datetime-local"
-                                wire:model.live="endDate"
+                            <input type="date"
+                                id="endDate"
+                                value="{{ $endDate }}"
                                 class="rounded-md border-gray-300 shadow-sm focus:border-electric-orange-500 focus:ring-electric-orange-500">
                         </div>
                     </div>
@@ -106,15 +108,60 @@
     @push('scripts')
     <script>
         let voltageChart, currentChart;
+        let pollingInterval;
+        const roomId = @json($roomId);
+        const ownerId = @json($ownerId);
+        console.log('Room ID:', roomId);
+        console.log('Owner ID:', ownerId);
 
-        document.addEventListener('livewire:initialized', () => {
-            const chartData = @json($chartData);
-            initCharts(chartData);
+        async function fetchChartData(startDate, endDate) {
+            try {
+                console.log('Fetching chart data for room:', roomId, 'from', startDate, 'to', endDate);
+                const response = await fetch(`/api/chart-data?owner_id=${ownerId}&room_id=${roomId}&start_date=${startDate}&end_date=${endDate}`, {
+                    headers: {
+                        'Accept': 'application/json',
+                    }
+                });
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching chart data:', error);
+                return null;
+            }
+        }
 
-            // Listen for chart data updates
-            Livewire.on('chartDataUpdated', (newData) => {
-                console.log('Received new data:', newData);
-                updateCharts(newData[0]); // Access first element of the data array
+        document.addEventListener('DOMContentLoaded', async () => {
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+
+            async function updateChartData() {
+                const startDate = startDateInput.value;
+                const endDate = endDateInput.value;
+                const chartData = await fetchChartData(startDate, endDate);
+                if (chartData) {
+                    requestAnimationFrame(() => {
+                        updateCharts(chartData);
+                    });
+                }
+            }
+
+            // Initial chart setup
+            const chartData = await fetchChartData(startDateInput.value, endDateInput.value);
+            if (chartData) {
+                initCharts(chartData);
+            }
+
+            // Event listeners for date inputs
+            startDateInput.addEventListener('change', updateChartData);
+            endDateInput.addEventListener('change', updateChartData);
+
+            // Setup polling for real-time updates
+            pollingInterval = setInterval(updateChartData, 5000);
+
+            // Cleanup on page unload
+            window.addEventListener('beforeunload', () => {
+                if (pollingInterval) {
+                    clearInterval(pollingInterval);
+                }
             });
         });
 
@@ -210,12 +257,12 @@
                 voltageChart.updateSeries([{
                     name: 'Voltage',
                     data: newData.voltage
-                }]);
+                }], true, false);
 
                 currentChart.updateSeries([{
                     name: 'Current',
                     data: newData.current
-                }]);
+                }], true, false);
             }
         }
     </script>
