@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\ElectricVariable;
 use App\Models\Room;
+use App\Jobs\CheckReminderTimeJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DataController extends Controller
 {
@@ -17,6 +19,13 @@ class DataController extends Controller
             $voltages = explode('+', $request->voltage);
             $currents = explode('+', $request->current);
             $consumes = explode('+', $request->consumed);
+
+            try {
+                CheckReminderTimeJob::dispatch($roomIds); // Dispatch the job to the queue
+                Log::info('CheckReminderTimeJob dispatched successfully.', ['roomIds' => $roomIds]);
+            } catch (\Exception $e) {
+                Log::error('Failed to dispatch CheckReminderTimeJob.', ['error' => $e->getMessage()]);
+            }
 
             $data = [];
             DB::beginTransaction();
