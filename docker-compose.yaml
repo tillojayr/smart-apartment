@@ -83,6 +83,19 @@ services:
     networks:
       - app-network
 
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-scheduler
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan schedule:work
+    volumes:
+      - .:/var/www
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
