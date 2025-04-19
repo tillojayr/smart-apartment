@@ -1,125 +1,124 @@
 <div class="px-2">
     <style>
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-    }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
 
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        transition: .5s;
-    }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .5s;
+        }
 
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: .5s;
-    }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .5s;
+        }
 
-    input:checked + .slider {
-        background-color: #ff6f00;
-    }
+        input:checked+.slider {
+            background-color: #ff6f00;
+        }
 
-    input:checked + .slider:before {
-        transform: translateX(26px);
-    }
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
 
-    .slider.round {
-        border-radius: 34px;
-    }
+        .slider.round {
+            border-radius: 34px;
+        }
 
-    .slider.round:before {
-        border-radius: 50%;
-    }
+        .slider.round:before {
+            border-radius: 50%;
+        }
 
-    .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
 
-    .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    }
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
 
-    .card-header {
-        font-weight: bold;
-        font-size: 1.25rem;
-        background-color: #ff8b33;
-        color: white;
-        padding: 10px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-    }
+        .card-header {
+            font-weight: bold;
+            font-size: 1.25rem;
+            background-color: #ff8b33;
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
 
-    .card-body {
-        padding: 20px;
-        background-color: #fff;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
+        .card-body {
+            padding: 20px;
+            background-color: #fff;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
 
-    .card-body p {
-        margin: 10px 0;
-    }
+        .card-body p {
+            margin: 10px 0;
+        }
 
-    .control-group {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
+        .control-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-    .control-group p {
-        margin: 0;
-        font-size: 1.1rem;
-        font-weight: bold;
-    }
+        .control-group p {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
 
-    .control-group label {
-        margin: 0 10px;
-    }
+        .control-group label {
+            margin: 0 10px;
+        }
 
-    .control-group.vertical {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+        .control-group.vertical {
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-    .control-group.vertical p {
-        margin-bottom: 10px;
-    }
+        .control-group.vertical p {
+            margin-bottom: 10px;
+        }
 
-    .control-group.vertical .switch {
-        margin-bottom: 10px;
-    }
+        .control-group.vertical .switch {
+            margin-bottom: 10px;
+        }
 
-    .control-group.horizontal {
-        flex-direction: row;
-        justify-content: space-around;
-    }
+        .control-group.horizontal {
+            flex-direction: row;
+            justify-content: space-around;
+        }
 
-    .control-group.horizontal p {
-    }
+        .control-group.horizontal p {}
     </style>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -148,15 +147,18 @@
                         <div class="control-group horizontal">
                             <div>
                                 <h3 class="h4">Voltage</h3>
-                                <h4 class="h4 text-electric-orange-500"><span id="admin-voltage">230V</span></h4>
+                                <h4 class="h4 text-electric-orange-500"><span
+                                        id="admin-voltage">{{ $owner->volts }}</span></h4>
                             </div>
                             <div>
                                 <h3 class="h4">Consumed</h3>
-                                <h4 class="h4 text-electric-orange-500"><span id="admin-voltage">99999 kw/h</span></h4>
+                                <h4 class="h4 text-electric-orange-500"><span id="admin-voltage">{{ $owner->consumed }}
+                                        kw/h</span></h4>
                             </div>
                             <div>
                                 <h3 class="h4">Current</h3>
-                                <h4 class="h4 text-electric-orange-500"><span id="admin-current">10A</span></h4>
+                                <h4 class="h4 text-electric-orange-500"><span id="admin-current">{{ $owner->current }}
+                                        A</span></h4>
                             </div>
                         </div>
                         <!-- <div class="control-group horizontal">
@@ -169,7 +171,7 @@
                     </div>
                 </div>
             </div>
-            @foreach($rooms as $room)
+            @foreach ($rooms as $room)
                 <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-header">
@@ -179,15 +181,18 @@
                             <div class="control-group horizontal">
                                 <div>
                                     <h3 class="h4">Voltage</h3>
-                                    <h4 class="h4 text-electric-orange-500"><span id="room1-voltage">{{ $room->volts }} V</span></h4>
+                                    <h4 class="h4 text-electric-orange-500"><span id="room1-voltage">{{ $room->volts }}
+                                            V</span></h4>
                                 </div>
                                 <div>
                                     <h3 class="h4">Consumed</h3>
-                                    <h4 class="h4 text-electric-orange-500"><span id="room1-current">{{ $room->consumed }} kw/h</span></h4>
+                                    <h4 class="h4 text-electric-orange-500"><span
+                                            id="room1-current">{{ $room->consumed }} kw/h</span></h4>
                                 </div>
                                 <div>
                                     <h3 class="h4">Current</h3>
-                                    <h4 class="h4 text-electric-orange-500"><span id="room1-current">{{ $room->current }} A</span></h4>
+                                    <h4 class="h4 text-electric-orange-500"><span
+                                            id="room1-current">{{ $room->current }} A</span></h4>
                                 </div>
                             </div>
                             <div class="control-group horizontal">
@@ -208,14 +213,16 @@
                             <div>
                                 @if ($room->flag == '1')
                                     <p class="italic text-electric-orange-400">Rent already paid?</p>
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-electric-orange-500 hover:bg-electric-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-electric-orange-500"
+                                    <button
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-electric-orange-500 hover:bg-electric-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-electric-orange-500"
                                         wire:click="changeFlagRoom({{ $room->id }}, 0)">
 
                                         Activate
                                     </button>
                                 @else
                                     <p class="italic text-electric-orange-400">Not paying rent?</p>
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-electric-orange-500 hover:bg-electric-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-electric-orange-500"
+                                    <button
+                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-electric-orange-500 hover:bg-electric-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-electric-orange-500"
                                         wire:click="changeFlagRoom({{ $room->id }}, 1)">
 
                                         Deactivate

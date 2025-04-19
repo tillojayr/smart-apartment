@@ -52,4 +52,19 @@ class SwitchController extends Controller
             return response()->json(['error' => 'Something went wrong'], 500);
         }
     }
+
+    public function allState(){
+        $rooms = Control::all();
+
+       $relayData = [];
+
+        foreach ($rooms as $room) {
+            $relayData[] = $room->relay_1;
+            $relayData[] = $room->relay_2;
+        }
+
+        $data = implode('+', $relayData);
+        
+        return response()->json(['data' => $data], 200);
+    }
 }

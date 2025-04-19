@@ -18,6 +18,7 @@ Route::prefix('v1/room')->middleware([EnsureApiToken::class])->group(function ()
     Route::get('/state', [SwitchController::class, 'state']);
     Route::post('/reminder-time', [DataController::class, 'reminderTime']);
     Route::get('/reminder-time/{id}', [DataController::class, 'getReminderTime']);
+    Route::get('/all-state', [SwitchController::class, 'allState']);
 });
 
 Route::prefix('v1/user')->group(function () {
@@ -25,7 +26,7 @@ Route::prefix('v1/user')->group(function () {
     Route::get('/tenant', [UserController::class, 'tenant']);
 });
 
-Route::post('/test', [DataController::class, 'test']);
+// Route::post('/test', [DataController::class, 'test']);
 Route::get('/chart-data', [ChartDataController::class, 'getChartData']);
 
 Route::middleware('auth:sanctum')->group(function () {

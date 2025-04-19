@@ -66,9 +66,11 @@ class ControlPanel extends Component
     public function render()
     {
         $rooms = Room::where(['owner_id' => auth()->id()])->get();
+        $owner = auth()->user();
 
         return view('livewire.control-panel', [
             'rooms' => $rooms,
+            'owner' => $owner,
         ]);
     }
 

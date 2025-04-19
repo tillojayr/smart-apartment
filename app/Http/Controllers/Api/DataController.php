@@ -83,7 +83,7 @@ class DataController extends Controller
             return response()->json('Success', 200);
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json('Something wen wrong!', 500);
+            return response()->json('Something went wrong!', 500);
         }
     }
 
