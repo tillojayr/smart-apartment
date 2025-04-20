@@ -49,7 +49,8 @@
                                             <td class="px-6 py-3 whitespace-nowrap text-md text-gray-900">
                                                 {{ $room->tenant }}</td>
                                             <td class="px-6 py-3 whitespace-nowrap text-md text-gray-900">
-                                                ₱ {{ number_format($room->bill, 2, ',', '.') }}</td>
+                                                ₱ {{ number_format($room->consumed * Auth()->rate(), 2, ',', '.') }}
+                                            </td>
                                             <td class="px-6 py-3 whitespace-nowrap text-md text-gray-900">
                                                 {{ \Carbon\CarbonImmutable::createFromFormat('Y-m-d H:i:s', $room->joined_at)->format('F j, Y') }}
                                             </td>
