@@ -37,7 +37,7 @@
                                     <p class="text-gray-600"><span class="font-medium">Tenant:</span> <span
                                             class="text-electric-orange-800">{{ $room->tenant ?? 'Vacant' }}</span></p>
                                     <p class="text-gray-600"><span class="font-medium">Current Bill:</span> <span
-                                            class="text-electric-orange-800">₱{{ number_format($room->consumed * Auth()->rate() ?? 0, 2) }}</span>
+                                            class="text-electric-orange-800">₱{{ number_format($room->consumed * Auth()->user()->rate ?? 0, 2) }}</span>
                                     </p>
                                 </div>
                             </div>

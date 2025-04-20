@@ -57,7 +57,7 @@
                         <div class="bg-white p-6 rounded-lg shadow-md border border-electric-orange-200">
                             <h3 class="text-lg font-semibold text-electric-orange-700 mb-2">Current Bill</h3>
                             <p class="text-3xl font-bold text-electric-orange-600">
-                                ₱{{ number_format($room->consumed * Auth()->rate() ?? 0, 2) }}</p>
+                                ₱{{ number_format($room->consumed * Auth()->user()->rate ?? 0, 2) }}</p>
                         </div>
 
                         <!-- Voltage Card -->
