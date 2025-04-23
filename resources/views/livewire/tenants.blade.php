@@ -61,6 +61,11 @@
                                                     wire:click="tenantDetails({{ $room->id }})">
                                                     View
                                                 </button>
+                                                <button
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-electric-orange-500 hover:bg-electric-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-electric-orange-500"
+                                                    wire:click="paidConfirmation({{ $room->id }})">
+                                                    Paid
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -136,6 +141,12 @@
                                                     class="mt-1 block w-full rounded-md border-electric-orange-300 shadow-sm focus:border-electric-orange-500 focus:ring-electric-orange-500"
                                                     wire:model="joined_at">
                                             </div>
+                                            <div class="mb-4">
+                                                <label class="block text-sm font-medium text-gray-700">Monthly Electric Bill Budget</label>
+                                                <input type="number"
+                                                    class="mt-1 block w-full rounded-md border-electric-orange-300 shadow-sm focus:border-electric-orange-500 focus:ring-electric-orange-500"
+                                                    wire:model="budget">
+                                            </div>
                                         </form>
                                     </div>
                                     <div
@@ -146,6 +157,40 @@
                                         <button type="button"
                                             class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-electric-orange-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                             wire:click="closeTenantDetailModal()">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                @if($paidConfimationModal)
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-50">
+                        <div class="fixed inset-0 z-10 overflow-y-auto">
+                            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                                <div
+                                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                                    <div class="bg-electric-orange-50 py-3 sm:px-6 border-b border-electric-orange-200">
+                                        <h3 class="text-lg font-medium leading-6 text-electric-orange-900">
+                                            Confirm Payment
+                                        </h3>
+                                    </div>
+                                    <div class="bg-white pt-3 pb-4 sm:p-6 sm:pb-4">
+                                        <p class="text-md text-gray-700">
+                                            Are you sure you want to mark this payment as paid? This action cannot be undone.
+                                        </p>
+                                        <p class="text-sm text-electric-orange-800 mt-2">
+                                            Note: This will reset the bill for this tenant.
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-electric-orange-200">
+                                        <button type="button"
+                                            class="inline-flex w-full justify-center rounded-md border border-transparent bg-electric-orange-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-electric-orange-600 focus:outline-none focus:ring-2 focus:ring-electric-orange-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                                            wire:click="confirmPayment()">Confirm</button>
+                                        <button type="button"
+                                            class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-electric-orange-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                                            wire:click="closePaidConfirmationModal()">Cancel</button>
                                     </div>
                                 </div>
                             </div>

@@ -2,6 +2,7 @@
 
 use App\Events\SwitchControlEvent;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\WattAi;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'login');
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('visual-data/{id}/room', function($id) {
         return view('visual-data-room', ['roomId' => $id]);
     })->name('visual-data.room');
+    Route::view('watt-ai', 'watt-ai')->name('watt-ai');
 });
 
 Route::get('test', function () {

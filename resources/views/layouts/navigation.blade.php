@@ -28,6 +28,10 @@
                         {{ __('Visual Data') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('watt-ai')" :active="request()->routeIs('watt-ai')">
+                        {{ __('Watt AI') }}
+                    </x-nav-link>
+
                     {{-- <x-nav-link :href="route('menu2')" :active="request()->routeIs('menu2')">
                         {{ __('Menu2') }}
                     </x-nav-link>
@@ -114,6 +118,10 @@
             <x-responsive-nav-link :href="route('visual-data')" :active="request()->routeIs('visual-data') || request()->routeIs('visual-data.room')"
                 class="hover:text-electric-orange-600 hover:bg-electric-orange-50">
                 {{ __('Visual Data') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('watt-ai')" :active="request()->routeIs('watt-ai')">
+                {{ __('Watt AI') }}
             </x-responsive-nav-link>
         </div>
 
