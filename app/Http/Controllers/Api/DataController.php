@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\ElectricVariable;
 use App\Models\Room;
+use App\Services\SmsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DataController extends Controller
 {
     public function index(Request $request)
-    {
+    {        
         try {
             $roomIds = explode('+', $request->roomId);
             $voltages = explode('+', $request->voltage);
@@ -30,45 +31,53 @@ class DataController extends Controller
                     $bill = (float) $consumed * $request->owner->rate;
 
                     if($i == 0){
-                        $request->owner->bill = $bill;
+                        $ownerBill = $request->owner->bill + $bill;
+                        $ownerConsumed = $request->owner->consumed + $consumed;
+
+                        $request->owner->bill = $ownerBill;
                         $request->owner->volts = $voltage;
                         $request->owner->current = $current;
-                        $request->owner->consumed = $consumed;
+                        $request->owner->consumed = $ownerConsumed;
                         $request->owner->save();
 
                         $data[] = [
                             'room_id' => 0,
                             'owner_id' => $request->owner->id,
-                            'bill' => $bill,
+                            'bill' => $ownerBill,
                             'volts' => $voltage,
                             'current' => $current ?? 0,
-                            'consumed' => $consumed,
+                            'consumed' => $ownerConsumed,
                             'created_at' => now(),
                             'updated_at' => now(),
                         ];
                     }
                     else{
+                        $room = Room::find($roomId);
+
+                        $roomBill = $room->bill + $bill;
+                        $roomConsumed = $room->consumed + $consumed;
+                        
+                        if($room){
+                            $room->update([
+                                'bill' => $roomBill,
+                                'volts' => $voltage,
+                                'current' => $current,
+                                'consumed' => $roomConsumed
+                            ]);
+                        }
+
                         $data[] = [
                             'room_id' => $roomId,
                             'owner_id' => $request->owner->id,
-                            'bill' => $bill,
+                            'bill' => $roomBill,
                             'volts' => $voltage,
                             'current' => $current,
-                            'consumed' => $consumed,
+                            'consumed' => $roomConsumed,
                             'created_at' => now(),
                             'updated_at' => now(),
                         ];
 
-                        $room = Room::find($roomId);
-
-                        if($room){
-                            $room->update([
-                                'bill' => $bill,
-                                'volts' => $voltage,
-                                'current' => $current,
-                                'consumed' => $consumed
-                            ]);
-                        }
+                        $this->handleBudgetNotification($room, $roomBill);
                     }
                 }
             }
@@ -111,6 +120,33 @@ class DataController extends Controller
             return response()->json(['reminder_time' => $reminder_time], 200);
         } catch(\Exception $e){
             return response()->json('Something went wrong', 500);
+        }
+    }
+
+    private function handleBudgetNotification($room, $roomBill)
+    {
+        $smsService = new SmsService();
+
+        if ($room->budget_notification_flag1 == 0) {
+            if ($roomBill >= 0.75 * $room->budget && $roomBill <= 0.85 * $room->budget) {
+                $smsService->sendSms(
+                    $room->contact_number,
+                    "Warning: Your electricity bill is approaching the budget limit. Current bill: $roomBill"
+                );
+                $room->budget_notification_flag1 = 1;
+                $room->save();
+            }
+        }
+
+        if ($room->budget_notification_flag2 == 0) {
+            if ($roomBill >= $room->budget) {
+                $smsService->sendSms(
+                    $room->contact_number,
+                    "Alert: Your electricity bill has exceeded the budget limit. Current bill: $roomBill"
+                );
+                $room->budget_notification_flag2 = 1;
+                $room->save();
+            }
         }
     }
 }

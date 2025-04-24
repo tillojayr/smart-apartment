@@ -37,6 +37,9 @@
                                             Start Date</th>
                                         <th
                                             class="px-6 py-3 bg-electric-orange-50 text-left text-xs font-medium text-electric-orange-800 uppercase tracking-wider">
+                                            Status</th>
+                                        <th
+                                            class="px-6 py-3 bg-electric-orange-50 text-left text-xs font-medium text-electric-orange-800 uppercase tracking-wider">
                                             Action</th>
                                     </tr>
                                 </thead>
@@ -54,6 +57,11 @@
                                             </td>
                                             <td class="px-6 py-3 whitespace-nowrap text-md text-gray-900">
                                                 {{ \Carbon\CarbonImmutable::createFromFormat('Y-m-d H:i:s', $room->joined_at)->format('F j, Y') }}
+                                            </td>
+                                            <td class="px-6 py-3 whitespace-nowrap text-md">
+                                                <span class="{{ $room->flag == '1' ? 'bg-red-100 text-red-500' : 'bg-green-100 text-green-500' }} px-2 py-1 rounded-full">
+                                                    {{ $room->flag == '1' ? 'Deactivated' : 'Active' }}
+                                                </span>
                                             </td>
                                             <td class="px-6 py-3 whitespace-nowrap text-md">
                                                 <button
