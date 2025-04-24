@@ -127,6 +127,10 @@ class DataController extends Controller
     {
         $smsService = new SmsService();
 
+        if($room->budget == 0){
+            return;
+        }
+        
         if ($room->budget_notification_flag1 == 0) {
             if ($roomBill >= 0.75 * $room->budget && $roomBill <= 0.85 * $room->budget) {
                 $smsService->sendSms(
