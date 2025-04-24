@@ -153,7 +153,7 @@
                             <div>
                                 <h3 class="h4">Consumed</h3>
                                 <h4 class="h4 text-electric-orange-500"><span id="admin-voltage">{{ $owner->consumed }}
-                                        kw/h</span></h4>
+                                        kwh</span></h4>
                             </div>
                             <div>
                                 <h3 class="h4">Current</h3>
@@ -187,7 +187,7 @@
                                 <div>
                                     <h3 class="h4">Consumed</h3>
                                     <h4 class="h4 text-electric-orange-500"><span
-                                            id="room1-current">{{ $room->consumed }} kw/h</span></h4>
+                                            id="room1-current">{{ $room->consumed }} kwh</span></h4>
                                 </div>
                                 <div>
                                     <h3 class="h4">Current</h3>
