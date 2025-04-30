@@ -1,12 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-electric-orange-800 leading-tight">
-            {{ __('Watt AI') }}
+            {{ __('Watt AI Assistant') }}
         </h2>
     </x-slot>
 
-    <div>
-        <livewire:watt-ai />
+    <div class="py-12">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <livewire:watt-ai-chat />
+        </div>
     </div>
-
 </x-app-layout>

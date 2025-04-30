@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ChartDataController;
 use App\Http\Middleware\EnsureApiToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NLPController;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -28,6 +29,8 @@ Route::prefix('v1/user')->group(function () {
 
 // Route::post('/test', [DataController::class, 'test']);
 Route::get('/chart-data', [ChartDataController::class, 'getChartData']);
+
+Route::post('/nlp/command', [NLPController::class, 'handleNLP']);
 
 Route::middleware('auth:sanctum')->group(function () {
 });
