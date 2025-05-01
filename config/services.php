@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'gemini' => [
+        'api_key' => env('GEMINI_API_KEY'),
+        'endpoint' => env('GEMINI_API_ENDPOINT', 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent'),
+        'use_mock' => env('GEMINI_USE_MOCK', true),
+    ],
 ];

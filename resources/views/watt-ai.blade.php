@@ -5,8 +5,10 @@
         </h2>
     </x-slot>
 
-    <div>
-        <livewire:watt-ai />
+    <div class="py-12">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <livewire:watt-ai />
+        </div>
     </div>
 
 </x-app-layout>
