@@ -40,7 +40,7 @@ class ReminderTimeNotification extends Command
                 Log::info('SMS sent to tenant: ' . $room->contact_number);
                 $smsService->sendSms(
                     $room->contact_number,
-                    "Reminder: It's time for your scheduled activity in room {$room->id}."
+                    "Hi {$room->tenant}, just a quick reminder. For everyone's safety, please ensure all electrical devices and appliances are turned off when not in use, especially before leaving your room. Thank you for helping keep the property safe!"
                 );
             }
         }
