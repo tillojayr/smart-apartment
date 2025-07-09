@@ -1,0 +1,16 @@
+name: Draft release note
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, synchronize]
+
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Release Drafter
+      uses: release-drafter/release-drafter@v6.1.0
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

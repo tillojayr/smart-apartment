@@ -1,0 +1,45 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+categories:
+  - title: 'Features'
+    labels:
+      - 'type: feature'
+  - title: 'Bug Fixes'
+    labels:
+      - 'type: bugfix'
+      - 'type: bug'
+  - title: 'Refactor'
+    labels:
+      - 'type: refactor'
+  - title: 'Performance'
+    labels:
+      - 'type: perf'
+  - title: 'Tests'
+    labels:
+      - 'type: unit-test'
+      - 'type: e2e'
+  - title: 'Infrastructure'
+    labels:
+      - 'type: infrastructure'
+  - title: 'CI'
+    labels:
+      - 'type: ci'
+  - title: 'Styles'
+    labels:
+      - 'type: style'
+  - title: 'Chores'
+    labels:
+      - 'type: chore'
+  - title: 'Docs'
+    labels:
+      - 'documentation'
+  - title: 'Dependencies'
+    labels:
+      - 'dependencies'
+      - 'deps'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+version-resolver:
+  default: patch
+template: |
+  ## Changed
+  $CHANGES
