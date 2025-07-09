@@ -1,13 +1,18 @@
 name: Draft release note
 
 on:
-  pull_request:
-    branches:
-      - main
-    types: [opened, reopened, synchronize]
+    push:
+      branches:
+        - main
+
+permissions:
+  contents: read
 
 jobs:
   update_release_draft:
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
     - name: Release Drafter
