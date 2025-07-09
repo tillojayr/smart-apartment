@@ -1,10 +1,9 @@
 name: Draft release note
 
 on:
-  pull_request:
-    branches:
-      - main
-    types: [opened, reopened, synchronize]
+    push:
+      branches:
+        - main
 
 jobs:
   update_release_draft:
