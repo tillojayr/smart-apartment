@@ -1,0 +1,40 @@
+autolabeler:
+  - label: 'type: feature'
+    branch:
+      - '/^feat\/.+/'
+  - label: 'bug'
+    branch:
+      - '/^fix\/.+/'
+  - label: 'type: docs'
+    branch:
+      - '/^docs\/.+/'
+  - label: 'type: refactor'
+    branch:
+      - '/^refactor\/.+/'
+  - label: 'type: test'
+    branch:
+      - '/^test\/.+/'
+  - label: 'type: chore'
+    branch:
+      - '/^chore\/.+/'
+  - label: 'type: ci'
+    branch:
+      - '/^ci\/.+/'
+  - label: 'type: performance'
+    branch:
+      - '/^perf\/.+/'
+  - label: 'type: hotfix'
+    branch:
+      - '/^hotfix\/.+/'
+  - label: 'type: infrastructure'
+    branch:
+      - '/^infra\/.+/'
+  - label: 'type: security'
+    branch:
+      - '/^security\/.+/'
+  - label: 'type: textbook'
+    branch:
+      - '/^textbook\/.+/'
+
+template: |
+  This field is unused, as we only use this config file for labeling PRs.
