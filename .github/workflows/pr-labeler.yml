@@ -17,6 +17,7 @@ jobs:
         uses: release-drafter/release-drafter@v6.1.0
         with:
           config-name: pr-labeler.yml
-          disable-autolabeler: true
+          disable-autolabeler: false
+          disable-releaser: true
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
